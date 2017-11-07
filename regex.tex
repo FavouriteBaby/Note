@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+% bmeps -c test.png test.eps
+\geometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=2.0cm}
+\title{正则表达式}
+\author{pwlin1992@gmail.com}
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{large}
+  \section{语法}
+  \subsection{+*?}
+  \begin{enumerate}
+  \item +
+
+    +号代表前面的字符必须至少出现1次。
+  \item *
+
+    *号代表字符可以不出现，也可以出现1次或多次。
+  \item ?
+
+    ?号代表前面的字符最多只能出现1次（0次，1次）。
+
+    如：colou?r，表示color或colour
+  \end{enumerate}
+
+  \subsection{普通字符与特殊字符}
+  正则表达式是由普通字符及特殊字符组成的文字模式。
+
+  \paragraph{普通字符}\mbox{} \\
+
+  大写、小写字母，所有数字，所有标点符号和一些其他符号。
+
+  非打印字符：
+
+  \begin{tabular}{|c|c|}
+    \hline
+    字符 & 描述 \\
+    \hline
+    \verb|\cx| & 匹配由x指明的控制字符。如\verb|\cM|匹配回车。\\
+    \hline
+    \verb|\f| & 匹配换页符，等价于\verb|\cL| \\
+    \hline
+    \verb|\n| & 匹配一个换行符，等价于\verb|\cJ| \\
+    \hline
+    \verb|\r| & 匹配一个回车符。 \\
+    \hline
+    \verb|\s| & 匹配任何空白字符，如空格，制表符，换页符等。 \\
+    \hline
+    \verb|\S| & 匹配任何非空白字符。 \\
+    \hline
+    \verb|\t| & 匹配一个制表符。 \\
+    \hline
+    \verb|\v| & 匹配一个垂直制表符。\\
+    \hline
+  \end{tabular}
+
+  \paragraph{特殊字符}\mbox{} \\
+  指的是正则表达式中有特殊意义的字符，如\verb|*$+.{|等。要匹配这些字符，都要用\verb|\|来转义。
+    \begin{tabular}{|c|c|}
+      \hline
+      字符 & 描述 \\
+      \hline
+      \verb|$| & 匹配输入字符串的结尾位置。\\
+      \hline
+      \verb|()| & 标记一个子表达式的开始和结束位置。\\
+      \hline
+      \verb|*| & 匹配前面的子表达式零次或多次。\\
+      \hline
+      \verb|+| & 匹配前面的子表达式一次或多次。 \\
+      \hline
+      \verb|.| & 匹配除换行符之外的任何单字符。 \\
+      \hline
+      \verb|[| & 标记一个中括号表达式的开始。 \\
+      \hline
+      \verb|?| & 匹配前面的子表达式零次或一次。 \\
+      \hline
+      \verb|\| & 标记下一个字符为特殊字符、或原义字符、或向后引用、或八进制转义符。 \\
+      \hline
+      \verb|^| & 匹配输入字符串的开始位置。 \\
+      \hline
+      \verb|{| & 标记限定符表达式的开始。 \\
+      \hline
+      \verb'|' & 指明两项之间的一个选择。 \\
+      \hline
+    \end{tabular}
+
+    \subsection{限定符}
+    指出正则表达式的一个给定组件必须要出现多少次才能满足匹配。有*，+，？，\verb|{n}，{n,}，{n,m}|6种。
+    \begin{tabular}{|c|c|}
+      \hline
+      字符 & 描述 \\
+      \hline
+      \verb|*| & 等价于{0,} \\
+      \hline
+      \verb|+| & 等价于{1,} \\
+      \hline
+      \verb|?| & 等价于{0,1} \\
+      \hline
+      {n} & 匹配确定的n次，如o{2}可以匹配food中的o，但不能匹配Bob中的o \\
+      \hline
+      {n,} & 至少匹配n次。\\
+      \hline
+      {n,m} & 最少匹配n次，最多匹配m次。\\
+      \hline
+    \end{tabular}
+
+    \subsection{定位符}
+    定位符使人可以将正则表达式固定到行首或行尾，或是单词内、单词开头、单词结尾。
+    \begin{tabular}{|c|c|}
+      \hline
+      字符 & 描述 \\
+      \verb|^| & 匹配输入字符串开始的位置。 \\
+      \hline
+      \verb|$| & 匹配输入字符串结尾的位置。\\
+      \hline
+      \verb|\b| & 匹配一个字边界，即字与空格间的位置。\\
+      \hline
+      \verb|\B| & 非字边界匹配。\\
+      \hline
+    \end{tabular}
+    如果\verb|\b|位于要匹配的字符串的开始处，则在单词的开始处查找匹配项，如果位于字符串的结尾，则在单词的结尾处查找匹配项。
+\end{large}
+\end{document}
